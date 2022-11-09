@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://oction-rdb.cmtm4w2q8rts.ap-northeast-2.rds.amazonaws.com/oction
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: sj991209
+#    username: ENC(IDdd/EqGT8hyHUX7chZTOQ9BbJfnWbm7)
+#    password: ENC(IgFTdDFO/Wqr7UamoziAnhsIEAIXDk6p)

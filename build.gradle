@@ -1,0 +1,71 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+    id 'com.google.cloud.tools.jib' version '3.1.2'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //aws
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+    //mysql
+    implementation 'mysql:mysql-connector-java'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    implementation 'com.h2database:h2'
+
+    implementation 'commons-fileupload:commons-fileupload:1.3.3'
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // api 문서화 툴
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'io.springfox:springfox-bean-validators'
+
+
+    runtimeOnly('com.h2database:h2')
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+jib {
+    from {
+        image = "openjdk:17-jdk-slim"
+    }
+    to {
+        image = "bsj1209/oction-project"
+        tags = ["0.0.1"]
+    }
+    container {
+        mainClass "com.octionservice.OctionServiceApplication"
+        ports = ["8080"]
+        volumes = ["/tmp"]
+        environment = [
+                "SPRING_PROFILES_ACTIVE": "prod",
+//				"JASYPT_ENCRYPTOR_PASSWORD":"end"
+        ]
+    }
+}
