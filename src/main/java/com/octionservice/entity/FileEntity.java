@@ -1,6 +1,7 @@
 package com.octionservice.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -35,4 +36,8 @@ public class FileEntity {
     @Column
     @Enumerated(EnumType.STRING)
     private Type type;
+
+    @Column
+    @ColumnDefault("0")
+    private Integer like;
 }
