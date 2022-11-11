@@ -29,6 +29,13 @@ public class ResponseFileDto {
     @ApiModelProperty(value = "유저가 등록할 떄의 파일의 이름")
     private String originalName;
 
+    @ApiModelProperty(value = "좋아요")
+    private Integer likes;
+
+    private Long price;
+
+    @ApiModelProperty(value = "디지털 자산에 대한 설명")
+    private String description;
 
     public static ResponseFileDto of(String url, String filename, String originalName){
         return ResponseFileDto.builder()

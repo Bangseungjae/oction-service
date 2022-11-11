@@ -39,5 +39,11 @@ public class FileEntity {
 
     @Column
     @ColumnDefault("0")
-    private Integer like;
+    private Integer likes;
+
+    @Column
+    private Long price;
+
+    @Column
+    private String description;
 }

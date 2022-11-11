@@ -28,7 +28,7 @@ public class S3Controller {
     @ApiOperation(value = "파일을 등록한다")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "file", value = "file등록", required = true, dataType = "image, video", paramType = "query"),
-            @ApiImplicitParam(name = "requestFileDto", value = "{\"username\":\"test\", \"nftName\": \"nftTest\", \"type\": \"Music\"}", required = true, dataType = "json", paramType = "query")
+            @ApiImplicitParam(name = "requestFileDto", value = "{\"username\":\"test\", \"nftName\": \"nftTest\", \"type\": \"Music\", \"price\":1000}", required = true, dataType = "json", paramType = "query")
     })
     @PostMapping(value = "/api/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadFile(@RequestPart("requestFileDto") RequestFileDto requestFileDto,
@@ -44,7 +44,10 @@ public class S3Controller {
                 requestFileDto.getUsername(),
                 requestFileDto.getNftName(),
                 requestFileDto.getType(),
-                file.getOriginalFilename()
+                file.getOriginalFilename(),
+                0,
+                requestFileDto.getPrice(),
+                requestFileDto.getDescription()
         );
 
         fileService.save(responseFileDto);
@@ -76,5 +79,11 @@ public class S3Controller {
     public ResponseEntity<List<ResponseFileDto>> getLast10Files() {
         List<ResponseFileDto> recentResponseFileDto = fileService.find10RecentResponseFileDto();
         return ResponseEntity.ok().body(recentResponseFileDto);
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<ResponseFileDto> getDetailByUrl(@RequestParam("url") String url) {
+        ResponseFileDto byUrls = fileService.findByUrls(url);
+        return ResponseEntity.ok().body(byUrls);
     }
 }

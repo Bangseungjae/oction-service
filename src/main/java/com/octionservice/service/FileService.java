@@ -21,8 +21,12 @@ public class FileService {
                 .urls(fileDto.getUrl())
                 .filename(fileDto.getFilename())
                 .username(fileDto.getUsername())
+                .type(fileDto.getType())
                 .nftName(fileDto.getNftName())
                 .originalName(fileDto.getOriginalName())
+                .likes(0)
+                .price(fileDto.getPrice())
+                .description(fileDto.getDescription())
                 .build();
         fileRepository.save(fileEntity);
     }
@@ -37,7 +41,10 @@ public class FileService {
                     fileEntity.getUsername(),
                     fileEntity.getNftName(),
                     fileEntity.getType(),
-                    fileEntity.getOriginalName()
+                    fileEntity.getOriginalName(),
+                    fileEntity.getLikes(),
+                    fileEntity.getPrice(),
+                    fileEntity.getDescription()
             );
 
             list.add(fileDto);
@@ -55,11 +62,30 @@ public class FileService {
                     f.getUsername(),
                     f.getNftName(),
                     f.getType(),
-                    f.getOriginalName()
+                    f.getOriginalName(),
+                    f.getLikes(),
+                    f.getPrice(),
+                    f.getDescription()
             );
             fileDtos.add(responseFileDto);
         }
         return fileDtos;
+    }
+
+    public ResponseFileDto findByUrls(String urls) {
+        FileEntity file = fileRepository.findByUrls(urls);
+
+        ResponseFileDto responseFileDto = ResponseFileDto.builder()
+                .username(file.getUsername())
+                .url(file.getUrls())
+                .price(file.getPrice())
+                .description(file.getDescription())
+                .likes(file.getLikes())
+                .type(file.getType())
+                .nftName(file.getNftName())
+                .originalName(file.getOriginalName())
+                .build();
+        return responseFileDto;
     }
 
 }

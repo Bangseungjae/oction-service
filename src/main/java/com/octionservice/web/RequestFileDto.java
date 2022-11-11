@@ -20,4 +20,10 @@ public class RequestFileDto {
 
     @ApiModelProperty(value = "등록할 디지털 자산 타입 ex(Art, Video, Music, Picture)")
     private Type type;
+
+    @ApiModelProperty(value = "디지털 자산의 가격")
+    private Long price;
+
+    @ApiModelProperty(value = "디지털 자산에 대한 설명")
+    private String description;
 }

@@ -10,4 +10,5 @@ import java.util.List;
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
     List<FileEntity> findTop10ByOrderByIdDesc();
+    FileEntity findByUrls(String urls);
 }
