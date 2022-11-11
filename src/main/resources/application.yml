@@ -19,7 +19,7 @@ logging:
           EC2MetadataUtils: ERROR
 spring:
   profiles:
-    active: dev
+    active: prod
   servlet:
     multipart:
       max-file-size: 50MB
