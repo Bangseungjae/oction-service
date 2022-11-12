@@ -71,7 +71,7 @@ public class S3Controller {
 
     @GetMapping("/")
     public String healthy() {
-        return "healthy~~~5";
+        return "healthy~~~6";
     }
 
     @ApiOperation(value = "최신 10개의 파일 제공")
