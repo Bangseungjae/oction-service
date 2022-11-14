@@ -53,7 +53,7 @@ tasks.named('test') {
 }
 jib {
     from {
-        image = "openjdk:17-jdk-slim"
+        image = "openjdk:11-jdk-slim"
     }
     to {
         image = "bsj1209/oction-project"
