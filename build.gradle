@@ -57,7 +57,7 @@ jib {
     }
     to {
         image = "bsj1209/oction-project"
-        tags = ["0.0.10"]
+        tags = ["0.0.11"]
     }
     container {
         mainClass "com.octionservice.OctionServiceApplication"
