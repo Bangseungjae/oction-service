@@ -57,7 +57,7 @@ jib {
     }
     to {
         image = "bsj1209/oction-project"
-        tags = ["0.0.13"]
+        tags = ["0.0.14"]
         auth {
             // retrieve from Jenkins
             username "bsj1209"
