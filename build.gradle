@@ -60,8 +60,8 @@ jib {
         tags = ["0.0.14"]
         auth {
             // retrieve from Jenkins
-            username "bsj1209"
-            password "sj991209@"
+            username "****"
+            password "****"
         }
     }
     container {
